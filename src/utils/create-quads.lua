@@ -1,6 +1,10 @@
 local function createQuads(image, columns, rows, xmargin, ymargin)
   local quads = {}
   local imageWidth, imageHeight = image:getDimensions()
+
+  imageWidth = imageWidth
+  imageHeight = imageHeight
+
   local width = imageWidth / columns
   local height = imageHeight / rows
 

@@ -9,15 +9,15 @@ function Track:new(scale, interval)
   Track.super.new(self, LG.newImage("assets/img/track.png"), scale)
 
   self.animation = Animation(interval)
-  self.animation.frames = createQuads(self.img, 2, 1, margin)
+  self.animation.frames = createQuads(self.img, 2, 1, margin, 0)
 end
 
 function Track:draw(x, y)
   LG.draw(
     self.img,
     self.animation.frames[self.animation.currentFrame],
-    x * self.scale,
-    y * self.scale,
+    x,
+    y,
     self.angle,
     self.scale,
     self.scale

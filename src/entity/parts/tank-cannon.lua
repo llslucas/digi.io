@@ -9,20 +9,20 @@ function TankCannon:new(scale, type)
   TankCannon.super.new(self, LG.newImage("assets/img/tank-cannon.png"), scale)
 
   self.type = type or 1
-  self.quads = createQuads(self.img, 3, 1, margin)
+  self.quads = createQuads(self.img, 3, 1, margin, 0)
 end
 
 function TankCannon:draw(x, y)
   LG.draw(
     self.img,
     self.quads[self.type],
-    x + (self:getWidth() * self.scale / 3 / 2) + xoffset,
-    y + (self:getHeight() * self.scale * 0.77),
+    x + (self:getWidth() / 3 / 2 * self.scale) + (xoffset * self.scale),
+    y + (self:getHeight() * 0.77 * self.scale),
     self.angle,
     self.scale,
     self.scale,
-    self:getWidth() * self.scale / 3 / 2,
-    self:getHeight() * self.scale * 0.77
+    self:getWidth() / 3 / 2,
+    self:getHeight() * 0.77
   )
 end
 

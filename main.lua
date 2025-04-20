@@ -9,7 +9,7 @@ local tank
 
 function love.load()
   gameScreen.load()
-  tank = Tank(1, 1)
+  tank = Tank(0.5, 1)
 end
 
 function love.draw()
