@@ -6,21 +6,21 @@ local Track = require "src.entity.parts.track"
 local TankCannon = require "src.entity.parts.tank-cannon"
 local TankBase = require "src.entity.parts.tank-base"
 
-function Tank:new(x, y, scale, type)
-  Tank.super.new(self, x, y)
+function Tank:new(scale, type)
+  Tank.super.new(self)
 
   self.scale = scale or 1
   self.type = type or 1
 
-  self.cannon = TankCannon(x, y, scale, type)
-  self.base = TankBase(x, y, scale, type)
-  self.track = Track(x, y, scale, 0.1)
+  self.cannon = TankCannon(scale, type)
+  self.base = TankBase(scale, type)
+  self.track = Track(scale, 0.1)
 end
 
-function Tank:draw()
-  self.track:draw()
-  self.base:draw()
-  self.cannon:draw()
+function Tank:draw(x, y)
+  self.track:draw(x, y)
+  self.base:draw(x, y)
+  self.cannon:draw(x, y)
 end
 
 function Tank:update(dt)

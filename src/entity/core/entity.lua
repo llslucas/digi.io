@@ -1,12 +1,14 @@
 local Object = require "lib.classic"
 local Entity = Object:extend()
 
-function Entity:new(x, y)
-    self.x = x
-    self.y = y
+function Entity:new(img, scale)
+    self.img = img
     self.angle = 0
-    self.img = nil
-    self.quad = nil
+    self.scale = scale or 1
+end
+
+function Entity:draw(x, y)
+    love.graphics.draw(self.img, x, y, self.angle, self.scale, self.scale)
 end
 
 function Entity:getHeight()

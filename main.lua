@@ -9,13 +9,12 @@ local tank
 
 function love.load()
   gameScreen.load()
-
-  tank = Tank(LG.getWidth()/2, LG.getHeight()/2, 1, 1)
+  tank = Tank(1, 1)
 end
 
 function love.draw()
   gameScreen.draw()
-  tank:draw()
+  tank:draw(300, 300)
 end
 
 function love.update(dt)

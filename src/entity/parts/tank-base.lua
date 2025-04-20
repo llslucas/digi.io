@@ -5,23 +5,19 @@ local createQuads = require "src.utils.create-quads"
 local margin = 5
 local xoffset = 10
 
-function TankBase:new(x, y, scale, type)
-  TankBase.super.new(self, x + xoffset, y)
-  
-  self.img = LG.newImage("assets/img/tank-base.png")
+function TankBase:new(scale, type)
+  TankBase.super.new(self, LG.newImage("assets/img/tank-base.png"), scale)  
 
-  self.scale = scale or 1
   self.type = type or 1
-
   self.quads = createQuads(self.img, 3, 1, margin)
 end
 
-function TankBase:draw()
+function TankBase:draw(x, y)
   LG.draw(
     self.img,
     self.quads[self.type],
-    self.x * self.scale,
-    self.y * self.scale,
+    x * self.scale + xoffset,
+    y * self.scale,
     self.angle,
     self.scale,
     self.scale
