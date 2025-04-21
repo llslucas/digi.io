@@ -2,7 +2,7 @@ local Tank = require "src.entity.tank"
 local Player = Tank:extend()
 local drawDashedLine = require "src.utils.draw-dashed-line"
 
-local Aim = require "src.entity.aim"
+local Aim = require "src.entity.graphics.aim"
 
 function Player:new()
   Player.super.new(self, 0.5, 1)
