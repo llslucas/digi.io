@@ -19,4 +19,8 @@ function Entity:getWidth()
     return self.img:getWidth()
 end
 
+function Entity:getCenter()
+    return self:getWidth() / 2, self:getHeight() / 2
+end
+
 return Entity
