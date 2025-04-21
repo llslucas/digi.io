@@ -1,5 +1,4 @@
 local entity = require "src.entity.core.entity"
-
 local Tank = entity:extend()
 
 local Track = require "src.entity.parts.track"
@@ -9,7 +8,7 @@ local TankBase = require "src.entity.parts.tank-base"
 function Tank:new(scale, type)
   Tank.super.new(self)
 
-  self.scale = scale or 1
+  self.scale = scale or 0.5
   self.type = type or 1
 
   self.cannon = TankCannon(scale, type)
@@ -33,6 +32,10 @@ end
 
 function Tank:getWidth()
   return self.track:getWidth()
+end
+
+function Tank:turnCannon(angle)
+  self.cannon:turn(angle)
 end
 
 return Tank
