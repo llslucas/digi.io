@@ -12,16 +12,20 @@ function TankBase:new(scale, type)
   self.quads = createQuads(self.img, 3, 1, margin, 0)
 end
 
-function TankBase:draw(x, y)
+function TankBase:draw()
   LG.draw(
     self.img,
     self.quads[self.type],
-    x + (xoffset * self.scale),
-    y,
+    self.x + (xoffset * self.scale),
+    self.y,
     self.angle,
     self.scale,
     self.scale
   )
+end
+
+function TankBase:getWidth()
+  return TankBase.super.getWidth(self) / 3
 end
 
 return TankBase

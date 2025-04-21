@@ -16,10 +16,10 @@ function Tank:new(scale, type)
   self.track = Track(scale, 0.1)
 end
 
-function Tank:draw(x, y)
-  self.track:draw(x, y)
-  self.base:draw(x, y)
-  self.cannon:draw(x, y)
+function Tank:draw()
+  self.track:draw()
+  self.base:draw()
+  self.cannon:draw()
 end
 
 function Tank:update(dt)
@@ -36,6 +36,15 @@ end
 
 function Tank:turnCannon(angle)
   self.cannon:turn(angle)
+end
+
+function Tank:setCoordinates(x, y)
+  self.x = x
+  self.y = y
+
+  self.track:setCoordinates(x, y)
+  self.base:setCoordinates(x, y)
+  self.cannon:setCoordinates(x, y)
 end
 
 return Tank

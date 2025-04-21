@@ -3,20 +3,20 @@ LG = love.graphics
 
 -- Variáveis locais
 local gameScreen = require 'src.screen.game-screen'
-local Tank = require 'src.entity.tank'
+local Player = require 'src.entity.player'
 
-local tank
+local player
 
 function love.load()
   gameScreen.load()
-  tank = Tank(0.5, 1)
+  player = Player()
 end
 
-function love.draw()
+function love.draw()  
   gameScreen.draw()
-  tank:draw(300, 300)
+  player:draw()
 end
 
 function love.update(dt)
-  tank:update(dt)
+  player:update(dt)
 end

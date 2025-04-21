@@ -16,8 +16,8 @@ function Track:draw(x, y)
   LG.draw(
     self.img,
     self.animation.frames[self.animation.currentFrame],
-    x,
-    y,
+    self.x,
+    self.y,
     self.angle,
     self.scale,
     self.scale
@@ -26,6 +26,10 @@ end
 
 function Track:update(dt)
   self.animation:update(dt)
+end
+
+function Track:getWidth()
+  return Track.super.getWidth(self) / 2
 end
 
 return Track

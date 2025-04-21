@@ -16,18 +16,27 @@ function TankCannon:draw(x, y)
   LG.draw(
     self.img,
     self.quads[self.type],
-    x + (self:getWidth() / 3 / 2 * self.scale) + (xoffset * self.scale),
-    y + (self:getHeight() * 0.77 * self.scale),
+    self.x + (self:getWidth() / 2) + (xoffset * self.scale),
+    self.y + (self:getHeight() * 0.75),
     self.angle,
     self.scale,
     self.scale,
-    self:getWidth() / 3 / 2,
-    self:getHeight() * 0.77
+    self:getWidth() / self.scale / 2,
+    self:getHeight() / self.scale * 0.75
   )
 end
 
 function TankCannon:turn(angle)
-  self.angle = angle
+  self.angle = math.rad(angle)
+end
+
+function TankCannon:getWidth()
+  return TankCannon.super.getWidth(self) / 3 - (margin * self.scale)
+end
+
+function TankCannon:getCoordinates()
+  return self.x + (self:getWidth() / 2) + (xoffset * self.scale),
+         self.y + (self:getHeight() * 0.75)
 end
 
 return TankCannon
