@@ -3,10 +3,10 @@ local TankCannon = Entity:extend()
 local createQuads = require "src.utils.create-quads"
 
 local margin = 5
-local xoffset = 45
+local xoffset = 48
 
-function TankCannon:new(scale, type)
-  TankCannon.super.new(self, LG.newImage("assets/img/tank-cannon.png"), scale)
+function TankCannon:new(scale, type, angle)
+  TankCannon.super.new(self, LG.newImage("assets/img/tank-cannon.png"), scale, angle)
 
   self.type = type or 1
   self.quads = createQuads(self.img, 3, 1, margin, 0)
@@ -31,7 +31,7 @@ function TankCannon:turn(angle)
 end
 
 function TankCannon:getWidth()
-  return TankCannon.super.getWidth(self) / 3 - (margin * self.scale)
+  return math.floor(TankCannon.super.getWidth(self) / 3 - (margin * self.scale))
 end
 
 function TankCannon:getCoordinates()

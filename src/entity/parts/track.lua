@@ -5,8 +5,8 @@ local createQuads = require "src.utils.create-quads"
 local Track = Entity:extend()
 local margin = 5
 
-function Track:new(scale, interval)
-  Track.super.new(self, LG.newImage("assets/img/track.png"), scale)
+function Track:new(scale, interval, angle)
+  Track.super.new(self, LG.newImage("assets/img/track.png"), scale, angle)
 
   self.animation = Animation(interval)
   self.animation.frames = createQuads(self.img, 2, 1, margin, 0)
@@ -16,11 +16,13 @@ function Track:draw(x, y)
   LG.draw(
     self.img,
     self.animation.frames[self.animation.currentFrame],
-    self.x,
-    self.y,
+    self.x + (self:getWidth() / 2),
+    self.y + (self:getHeight() / 2),
     self.angle,
     self.scale,
-    self.scale
+    self.scale,
+    self:getWidth() / self.scale / 2,
+    self:getHeight() / self.scale / 2
   )
 end
 
@@ -29,7 +31,7 @@ function Track:update(dt)
 end
 
 function Track:getWidth()
-  return Track.super.getWidth(self) / 2
+  return math.floor(self.super.getWidth(self) / 2 - (margin * self.scale))
 end
 
 return Track

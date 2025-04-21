@@ -13,11 +13,11 @@ function Player:new()
   )
 
   self.aim = Aim(0.5)
-  self.aimed = false
+  self.enemy = nil
 end
 
 function Player:draw()
-  if self.aimed then
+  if self.enemy then
     self.aim:draw()
 
     local playerX, playerY = self.cannon:getCoordinates()
@@ -32,19 +32,23 @@ end
 function Player:update(dt)
   self.super.update(self, dt)
 
-  if self.aimed then
-    self:aimEnemy(self.aim.x, self.aim.y)
+  if self.enemy then
+    self:aimEnemy()
   end
 end
 
-function Player:aimEnemy(x, y)
-  local cannonX, cannonY = self.cannon:getCoordinates()
+function Player:setEnemy(enemy)
+  self.enemy = enemy
+end
 
-  local angle = math.deg(math.atan2(y - cannonY, x - cannonX)) + 90
+function Player:aimEnemy()
+  local cannonX, cannonY = self.cannon:getCoordinates()
+  local enemyX, enemyY = self.enemy:getCenterCoordinates()
+
+  local angle = math.deg(math.atan2(enemyY - cannonY, enemyX - cannonX)) + 90
 
   self:turnCannon(angle)
-  self.aim:setCoordinates(x, y)
-  self.aimed = true
+  self.aim:setCoordinates(enemyX, enemyY)
 end
 
 return Player

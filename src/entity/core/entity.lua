@@ -1,10 +1,10 @@
 local Object = require "lib.classic"
 local Entity = Object:extend()
 
-function Entity:new(img, scale)
+function Entity:new(img, scale, angle)
     self.img = img
-    self.angle = 0
     self.scale = scale or 1
+    self.angle = angle or 0
     self.x = 0
     self.y = 0
 end
@@ -14,11 +14,11 @@ function Entity:draw()
 end
 
 function Entity:getHeight()
-    return self.img:getHeight() * self.scale
+    return math.floor(self.img:getHeight() * self.scale)
 end
 
 function Entity:getWidth()
-    return self.img:getWidth() * self.scale
+    return math.floor(self.img:getWidth() * self.scale)
 end
 
 function Entity:setCoordinates(x, y)

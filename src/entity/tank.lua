@@ -5,15 +5,16 @@ local Track = require "src.entity.parts.track"
 local TankCannon = require "src.entity.parts.tank-cannon"
 local TankBase = require "src.entity.parts.tank-base"
 
-function Tank:new(scale, type)
+function Tank:new(scale, type, angle)
   Tank.super.new(self)
 
+  self.angle = angle or 0
   self.scale = scale or 0.5
   self.type = type or 1
 
-  self.cannon = TankCannon(scale, type)
-  self.base = TankBase(scale, type)
-  self.track = Track(scale, 0.1)
+  self.cannon = TankCannon(scale, type, angle)
+  self.base = TankBase(scale, type, angle)
+  self.track = Track(scale, 0.1, angle)
 end
 
 function Tank:draw()
@@ -45,6 +46,10 @@ function Tank:setCoordinates(x, y)
   self.track:setCoordinates(x, y)
   self.base:setCoordinates(x, y)
   self.cannon:setCoordinates(x, y)
+end
+
+function Tank:gerCenterCoordinates()
+  return self.track:gerCenterCoordinates()
 end
 
 return Tank
