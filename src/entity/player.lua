@@ -41,6 +41,10 @@ function Player:setEnemy(enemy)
   self.enemy = enemy
 end
 
+function Player:unsetEnemy()
+  self.enemy = nil
+end
+
 function Player:aimEnemy()
   local cannonX, cannonY = self.cannon:getCoordinates()
   local enemyX, enemyY = self.enemy:getCenterCoordinates()
