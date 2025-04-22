@@ -1,6 +1,8 @@
 local Tank = require("src.entity.tank")
 local Enemy = Tank:extend()
 
+local Text = require("src.entity.graphics.text")
+
 function Enemy:new(speed, word, type)
   Enemy.super.new(self, 0.5, type, math.rad(180))
 
@@ -10,19 +12,11 @@ function Enemy:new(speed, word, type)
   )
 
   self.speed = speed
-  self.word = word
-
-  self.textWidth = LG.getFont():getWidth(self.word)
-  self.textHeight = LG.getFont():getHeight(self.word)
+  self.text = Text(word, self:getCenterCoordinates(), self.y - 30)
 end
 
 function Enemy:draw()
-  LG.setColor(0, 0, 0, 0.6)
-  LG.rectangle("fill", self:getCenterCoordinates() - self.textWidth / 2 - 10, self.y - 35, self.textWidth + 20, self.textHeight + 10, 5, 5, 10)
-  LG.setColor(1, 1, 1)
-
-  LG.print(self.word, self:getCenterCoordinates() - self.textWidth / 2, self.y - 30)
-
+  self.text:draw()
   self.super.draw(self)
 end
 
@@ -36,6 +30,8 @@ function Enemy:moveFoward(distance)
     self.x,
     self.y + distance
   )
+
+  self.text:setCoordinates(self:getCenterCoordinates(), self.y - 30)
 end
 
 function Enemy:setCoordinates(x, y)

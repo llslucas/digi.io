@@ -15,7 +15,6 @@ function love.load()
 
   gameScreen.load()
   player = Player()
-
   enemy = Enemy(100, "teste", 2)
 
   player:setEnemy(enemy)
