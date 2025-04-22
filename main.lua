@@ -15,7 +15,7 @@ function love.load()
 
   gameScreen.load()
   player = Player()
-  enemy = Enemy(100, "teste", 2)
+  enemy = Enemy(100, "palavra", 2)
 
   player:setEnemy(enemy)
 end
@@ -23,10 +23,23 @@ end
 function love.draw()
   gameScreen.draw()
   player:draw()
-  enemy:draw()
+  if enemy then 
+    enemy:draw()
+  end
 end
 
 function love.update(dt)
   player:update(dt)
-  enemy:update(dt)
+
+  if enemy then 
+    enemy:update(dt)
+  end
+end
+
+function love.keypressed(key)
+  enemy:checkInput(key)
+  if(enemy:checkCompleted()) then
+    enemy = nil
+    player:unsetEnemy()
+  end
 end

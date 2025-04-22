@@ -43,4 +43,12 @@ function Enemy:setCoordinates(x, y)
   self.cannon:setCoordinates(x, y - 40)
 end
 
+function Enemy:checkInput(char)
+  self.text:checkInput(char)
+end
+
+function Enemy:checkCompleted()
+  return self.text:checkCompleted()
+end
+
 return Enemy

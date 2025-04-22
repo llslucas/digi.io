@@ -9,6 +9,8 @@ function Text:new(text, x, y)
   self.length = string.len(text)
   self.width = love.graphics.getFont():getWidth(text)
   self.height = love.graphics.getFont():getHeight(text)
+
+  self.correct = ''
 end
 
 function Text:draw()
@@ -17,11 +19,30 @@ function Text:draw()
 
   LG.setColor(1, 1, 1)
   LG.print(self.str, self.x - self.width / 2, self.y)
+
+  LG.setColor(1, 0.349, 0)
+  LG.print(self.correct, self.x - self.width / 2, self.y)
+
+  LG.setColor(1, 1, 1)
 end
 
 function Text:setCoordinates(x, y)
   self.x = x
   self.y = y
+end
+
+function Text:checkInput(char)
+  if self.str:sub(self.correct:len() + 1, self.correct:len() + 1) == char then
+    self.correct = self.str:sub(1, self.correct:len() + 1)
+  end
+end
+
+function Text:checkCompleted()
+  if self.str == self.correct then
+    return true
+  end
+
+  return false
 end
 
 return Text
