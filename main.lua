@@ -1,20 +1,17 @@
 -- Variáveis Globais
+require 'data.words'
+
 LG = love.graphics
 
 -- Variáveis locais
-local gameScreen = require 'src.screen.game-screen'
+local gameScreen = require 'src.screens.game-screen'
 local Player = require 'src.entity.player'
 local Enemies = require 'src.aggregate.enemies'
+local Ambience = require 'src.sounds.ambience'
+local ShotSound = require 'src.sounds.shot'
 
-
-local player, enemies
+local player, enemies, ambience, shotSound
 local elapsedTime = 0
-
-local function playShot()
-  local s = love.audio.newSource("assets/sounds/shot-laser.wav", "static")
-  s:setVolume(0.5)
-  s:play()
-end
 
 function love.load()
   math.randomseed(os.time())
@@ -23,12 +20,11 @@ function love.load()
   gameScreen.load()
   player = Player()
   enemies = Enemies()
-  
-  backgroundAmbience = love.audio.newSource("assets/sounds/ambience.mp3", "stream")
-  backgroundAmbience:setLooping(true)
-  backgroundAmbience:setVolume(0.2) 
-  backgroundAmbience:play()
-  
+
+  ambience = Ambience()
+  shotSound = ShotSound()
+
+  ambience:play()
 end
 
 function love.draw()
@@ -43,8 +39,9 @@ function love.update(dt)
   player:update(dt)
   enemies:update(dt)
 
-  if elapsedTime >= 1 then
-    enemies:addEnemy(50, "palavra", 3)
+  if elapsedTime >= 2 then
+    local randomWord = words[math.random(#words)]
+    enemies:addEnemy(50, randomWord.word, math.random(2, 3))
     elapsedTime = 0
   end
 end
@@ -52,13 +49,15 @@ end
 function love.keypressed(key)
   if not player.enemy then
     local enemy = enemies:checkInput(key)
+
     if enemy then
-      playShot() -- 🔫 som ao acertar a 1ª letra
+      shotSound:play()
       player:setEnemy(enemy)
     end
+
   else
     if player.enemy:checkInput(key) then
-      playShot() -- 🔫 som a cada letra correta
+      shotSound:play()
     end
   end
 
@@ -66,5 +65,3 @@ function love.keypressed(key)
     player:unsetEnemy()
   end
 end
-
-
