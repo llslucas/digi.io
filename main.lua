@@ -4,10 +4,10 @@ LG = love.graphics
 -- Variáveis locais
 local gameScreen = require 'src.screen.game-screen'
 local Player = require 'src.entity.player'
-local Enemy = require 'src.entity.enemy'
+local Enemies = require 'src.aggregate.enemies'
 
-local player
-local enemy
+local player, enemies
+local elapsedTime = 0
 
 function love.load()
   math.randomseed(os.time())
@@ -15,31 +15,35 @@ function love.load()
 
   gameScreen.load()
   player = Player()
-  enemy = Enemy(100, "palavra", 2)
-
-  player:setEnemy(enemy)
+  enemies = Enemies()
 end
 
 function love.draw()
   gameScreen.draw()
   player:draw()
-  if enemy then 
-    enemy:draw()
-  end
+  enemies:draw()
 end
 
 function love.update(dt)
-  player:update(dt)
+  elapsedTime = elapsedTime + dt
 
-  if enemy then 
-    enemy:update(dt)
+  player:update(dt)
+  enemies:update(dt)
+
+  if elapsedTime >= 2 then
+    enemies:addEnemy(100, "palavra", 2)
+    elapsedTime = 0
   end
 end
 
 function love.keypressed(key)
-  enemy:checkInput(key)
-  if(enemy:checkCompleted()) then
-    enemy = nil
+  if not player.enemy then
+    player:setEnemy(enemies:checkInput(key))
+  else
+    player.enemy:checkInput(key)
+  end
+
+  if enemies:checkCompleted() then 
     player:unsetEnemy()
   end
 end

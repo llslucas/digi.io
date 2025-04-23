@@ -9,5 +9,11 @@
   "Lua.workspace.checkThirdParty": false,
   "Lua.diagnostics.disable": [
     "redundant-parameter"
-  ]
+  ],
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
 }

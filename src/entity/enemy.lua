@@ -44,7 +44,7 @@ function Enemy:setCoordinates(x, y)
 end
 
 function Enemy:checkInput(char)
-  self.text:checkInput(char)
+  return self.text:checkInput(char)
 end
 
 function Enemy:checkCompleted()

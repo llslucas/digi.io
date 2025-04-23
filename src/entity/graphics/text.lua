@@ -34,7 +34,9 @@ end
 function Text:checkInput(char)
   if self.str:sub(self.correct:len() + 1, self.correct:len() + 1) == char then
     self.correct = self.str:sub(1, self.correct:len() + 1)
+    return true
   end
+  return false
 end
 
 function Text:checkCompleted()
