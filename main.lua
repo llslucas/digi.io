@@ -30,8 +30,8 @@ function love.update(dt)
   player:update(dt)
   enemies:update(dt)
 
-  if elapsedTime >= 2 then
-    enemies:addEnemy(100, "palavra", 2)
+  if elapsedTime >= 1 then
+    enemies:addEnemy(100, "palavra", 3)
     elapsedTime = 0
   end
 end
@@ -43,7 +43,7 @@ function love.keypressed(key)
     player.enemy:checkInput(key)
   end
 
-  if enemies:checkCompleted() then 
+  if enemies:checkCompleted() then
     player:unsetEnemy()
   end
 end

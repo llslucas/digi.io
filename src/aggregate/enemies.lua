@@ -2,9 +2,11 @@ local Object = require 'lib.classic'
 local Enemies = Object:extend()
 
 local Enemy = require 'src.entity.enemy'
+local Explosions = require 'src.aggregate.explosions'
 
 function Enemies:new()
   self.enemies = {}
+  self.explosions = Explosions()
 end
 
 function Enemies:addEnemy(speed, word, type)
@@ -16,12 +18,16 @@ function Enemies:draw()
   for _, enemy in ipairs(self.enemies) do
     enemy:draw()
   end
+
+  self.explosions:draw()
 end
 
 function Enemies:update(dt)
   for _, enemy in ipairs(self.enemies) do
     enemy:update(dt)
   end
+
+  self.explosions:update(dt)
 end
 
 function Enemies:checkInput(char)
@@ -43,6 +49,9 @@ function Enemies:checkCompleted()
 end
 
 function Enemies:removeEnemy(index)
+  local x, y = self.enemies[index]:getCenterCoordinates()
+
+  self.explosions:addExplosion(x, y, 0.5)
   table.remove(self.enemies, index)
 end
 
