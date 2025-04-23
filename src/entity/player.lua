@@ -43,6 +43,7 @@ end
 
 function Player:unsetEnemy()
   self.enemy = nil
+  self:turnCannon(0)
 end
 
 function Player:aimEnemy()
