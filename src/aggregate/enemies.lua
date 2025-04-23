@@ -7,6 +7,8 @@ local Explosions = require 'src.aggregate.explosions'
 function Enemies:new()
   self.enemies = {}
   self.explosions = Explosions()
+  self.tankSound = love.audio.newSource('assets/sounds/move-tank.wav', 'stream')
+  self.tankSound:setLooping(true)
 end
 
 function Enemies:addEnemy(speed, word, type)
@@ -28,6 +30,17 @@ function Enemies:update(dt)
   end
 
   self.explosions:update(dt)
+  
+  if #self.enemies > 0 then
+    if not self.tankSound:isPlaying() then
+      self.tankSound:play()
+    end
+  else
+    if self.tankSound:isPlaying() then
+      self.tankSound:stop()
+    end
+  end
+  
 end
 
 function Enemies:checkInput(char)
