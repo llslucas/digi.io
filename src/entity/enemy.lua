@@ -51,4 +51,8 @@ function Enemy:checkCompleted()
   return self.text:checkCompleted()
 end
 
+function Enemy:getHeight()
+  return self.super.getHeight(self) + 30
+end
+
 return Enemy
