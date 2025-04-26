@@ -2,7 +2,7 @@ local Object = require "lib.classic"
 local Entity = Object:extend()
 
 function Entity:new(img, scale, angle)
-    self.img = img
+    self.img = img or nil
     self.scale = scale or 1
     self.angle = angle or 0
     self.x = 0

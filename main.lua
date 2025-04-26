@@ -9,8 +9,9 @@ local Player = require 'src.entity.player'
 local Enemies = require 'src.aggregate.enemies'
 local Ambience = require 'src.sounds.ambience-sound'
 local ShotSound = require 'src.sounds.shot-sound'
+local Score = require 'src.entity.graphics.score'
 
-local player, enemies, ambience, shotSound
+local player, enemies, ambience, shotSound, score
 local elapsedTime = 0
 
 function love.load()
@@ -24,6 +25,8 @@ function love.load()
   ambience = Ambience()
   shotSound = ShotSound()
 
+  score = Score(LG.getWidth() - 10, LG.getHeight() - 10)
+
   ambience:play()
 end
 
@@ -31,6 +34,7 @@ function love.draw()
   gameScreen.draw()
   player:draw()
   enemies:draw()
+  score:draw()
 end
 
 function love.update(dt)
@@ -38,6 +42,8 @@ function love.update(dt)
 
   player:update(dt)
   enemies:update(dt)
+
+  score:update(dt)
 
   if elapsedTime >= 2 then
     local randomWord = words[math.random(#words)]
@@ -62,6 +68,7 @@ function love.keypressed(key)
   end
 
   if enemies:checkCompleted() then
+    score:addScore(10)
     player:unsetEnemy()
   end
 end
