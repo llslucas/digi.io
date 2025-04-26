@@ -20,7 +20,7 @@ function Gameplay:new()
   self.enemies = Enemies()
 
   self.shotSound = ShotSound()
-  self.score = Score(love.graphics.getWidth() - 10, love.graphics.getHeight() - 10)
+  self.score = Score(LG.getWidth() - 10, LG.getHeight() - 10)
 
   self.elapsedTime = 0
 

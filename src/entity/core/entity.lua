@@ -9,7 +9,7 @@ function Entity:new(img, scale, angle)
 end
 
 function Entity:draw()
-    love.graphics.draw(self.img, self.x, self.y, self.angle, self.scale, self.scale)
+    LG.draw(self.img, self.x, self.y, self.angle, self.scale, self.scale)
 end
 
 function Entity:getHeight()

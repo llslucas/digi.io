@@ -7,8 +7,8 @@ function Text:new(text, x, y)
   self.y = y
 
   self.length = string.len(text)
-  self.width = love.graphics.getFont():getWidth(text)
-  self.height = love.graphics.getFont():getHeight(text)
+  self.width = LG.getFont():getWidth(text)
+  self.height = LG.getFont():getHeight(text)
 
   self.correct = ''
 end

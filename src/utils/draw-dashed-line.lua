@@ -13,7 +13,7 @@ local function drawDashedLine(x1, y1, x2, y2, dashLength, gapLength)
     local endX = startX + math.cos(angle) * endLength
     local endY = startY + math.sin(angle) * endLength
 
-    love.graphics.line(startX, startY, endX, endY)
+    LG.line(startX, startY, endX, endY)
 
     currentLength = currentLength + dashLength + gapLength
   end
