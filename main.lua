@@ -30,7 +30,7 @@ end
 function love.draw()
   if GAME.STATUS == 'initial' then
     startScreen:draw()
-  elseif GAME.STATUS == 'playing' or GAME.STATUS == "paused" then
+  elseif GAME.STATUS == 'playing' or GAME.STATUS == "paused" or GAME.STATUS == 'start' then
     gameplay:draw()
   elseif GAME.STATUS == 'gameover' then
     gameOverScreen:draw()
@@ -40,7 +40,7 @@ end
 function love.update(dt)
   if GAME.STATUS == 'initial' then
     startScreen:update(dt)
-  elseif GAME.STATUS == 'playing' or GAME.STATUS == "paused" then
+  elseif GAME.STATUS == 'playing' or GAME.STATUS == "paused" or GAME.STATUS == 'start' then
     gameplay:update(dt)
   elseif GAME.STATUS == 'gameover' then
     gameOverScreen:update(dt)

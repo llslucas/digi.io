@@ -17,7 +17,6 @@ end
 function Screen:draw()
   LG.draw(self.bg.img, 0, 0, 0, self.bg.scale, self.bg.scale)
   self.buttons:draw()
-
 end
 
 function Screen:update()

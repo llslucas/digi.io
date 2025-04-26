@@ -6,6 +6,8 @@ local Gameplay = Object:extend()
 
 -- Dependências
 local GameScreen = require 'src.screens.game-screen'
+local PauseScreen = require 'src.screens.pause-screen'
+
 local Player = require 'src.entity.player'
 local Enemies = require 'src.aggregate.enemies'
 local ShotSound = require 'src.sounds.shot-sound'
@@ -16,6 +18,8 @@ function Gameplay:new()
   self.progression = Progression()
 
   self.gameScreen = GameScreen()
+  self.pauseScreen = PauseScreen()
+
   self.player = Player()
   self.enemies = Enemies()
 
@@ -30,9 +34,24 @@ function Gameplay:draw()
   self.player:draw()
   self.enemies:draw()
   self.score:draw()
+
+  if GAME.STATUS == 'paused' then
+    self.pauseScreen:draw()
+  end
 end
 
 function Gameplay:update(dt)
+  if GAME.STATUS == 'start' then
+    self.progression:reset()
+    self.enemies:clear()
+    GAME.SCORE = 0
+    GAME.STATUS = 'playing'
+  end
+
+  if GAME.STATUS == 'paused' then
+    self.pauseScreen:update(dt)
+  end
+
   if self.player.isAlive and GAME.STATUS == "playing" then
     self.elapsedTime = self.elapsedTime + dt
 
@@ -55,7 +74,7 @@ function Gameplay:update(dt)
     end
   else
     self:stopSounds()
-  end
+  end  
 end
 
 function Gameplay:keypressed(key)
