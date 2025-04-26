@@ -73,7 +73,6 @@ function Enemies:checkCollision(tank)
 
   for _, enemy in ipairs(self.enemies) do
     if enemy:checkCollision(tank) then
-      print("COLLISION")
       return true
     end
   end
