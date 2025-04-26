@@ -62,4 +62,23 @@ function Tank:gerCenterCoordinates()
   return self.track:gerCenterCoordinates()
 end
 
+function Tank:checkCollision(tank)
+  print("Checando colisão")
+
+  local x1, y1 = self.track:getCoordinates()
+  local x2, y2 = tank.track:getCoordinates()
+
+  local width1, height1 = self:getWidth(), self:getHeight()
+  local width2, height2 = tank:getWidth(), tank:getHeight()
+
+  local collision = x1 < x2 + width2 and
+                    x1 + width1 > x2 and
+                    y1 < y2 + height2 and
+                    y1 + height1 > y2
+
+  print(collision)
+
+  return collision
+end
+
 return Tank

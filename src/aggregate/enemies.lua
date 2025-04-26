@@ -13,6 +13,11 @@ end
 
 function Enemies:addEnemy(speed, word, type)
   local enemy = Enemy(speed, word, type)
+
+  while self:checkCollision(enemy) == true do
+    enemy = Enemy(speed, word, type)
+  end
+
   table.insert(self.enemies, enemy)
 end
 
@@ -58,6 +63,21 @@ function Enemies:checkCompleted()
       return true
     end
   end
+  return false
+end
+
+function Enemies:checkCollision(tank)
+  if tank == nil then
+    return false
+  end
+
+  for _, enemy in ipairs(self.enemies) do
+    if enemy:checkCollision(tank) then
+      print("COLLISION")
+      return true
+    end
+  end
+
   return false
 end
 
