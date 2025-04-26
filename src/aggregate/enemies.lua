@@ -1,4 +1,3 @@
-local Object = require 'lib.classic'
 local Enemies = Object:extend()
 
 local Enemy = require 'src.entity.enemy'

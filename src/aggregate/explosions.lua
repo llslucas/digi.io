@@ -1,4 +1,3 @@
-local Object = require 'lib.classic'
 local Explosions = Object:extend()
 
 local Explosion = require 'src.animations.explosion'

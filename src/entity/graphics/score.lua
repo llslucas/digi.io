@@ -1,4 +1,3 @@
-local Object = require("lib.classic")
 local Score = Object:extend()
 
 function Score:new(x, y)  

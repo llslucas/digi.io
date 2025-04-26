@@ -1,4 +1,3 @@
-local Object = require 'lib.classic'
 local Text = Object:extend()
 
 function Text:new(text, x, y)
