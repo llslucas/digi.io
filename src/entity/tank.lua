@@ -39,7 +39,6 @@ function Tank:getWidth()
   return self.track:getWidth()
 end
 
-
 function Tank:turnCannon(angle)
   -- Verifica se o ângulo mudou o suficiente 
   if math.abs(self.angle - angle) > 1 then

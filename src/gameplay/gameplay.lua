@@ -52,7 +52,11 @@ function Gameplay:update(dt)
       self.elapsedTime = 0
     end
 
-    if GAME.ENEMIES <= 0 then      
+    if self.player:checkCollision(self.enemies:getFirstEnemy()) then
+      self:gameOver()
+    end
+
+    if GAME.ENEMIES <= 0 then
       self.progression:increaseLevel()
     end
   else
@@ -101,6 +105,12 @@ end
 function Gameplay:restart()
   GAME.STATUS = "playing"
   self.elapsedTime = 0
+end
+
+function Gameplay:gameOver()
+  self.player:unsetEnemy()
+  self.enemies:clear()
+  GAME.STATUS = "gameover"
 end
 
 function Gameplay:stopSounds()

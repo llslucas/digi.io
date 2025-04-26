@@ -1,5 +1,6 @@
 local Tank = require "src.entity.tank"
 local Player = Tank:extend()
+
 local drawDashedLine = require "src.utils.draw-dashed-line"
 
 local Aim = require "src.entity.graphics.aim"
@@ -26,7 +27,9 @@ function Player:draw()
     LG.setColor(1, 1, 1)
   end
 
-  self.super.draw(self)
+  if self.isAlive then
+    self.super.draw(self)
+  end
 end
 
 function Player:update(dt)
@@ -54,6 +57,21 @@ function Player:aimEnemy()
 
   self:turnCannon(angle)
   self.aim:setCoordinates(enemyX, enemyY)
+end
+
+function Player:checkCollision(tank)
+  if tank == nil then
+    return false
+  end
+
+  local playerY = self.y
+  local tankY = tank.y
+
+  if math.abs(playerY - tankY) < self:getHeight() then
+    return true
+  end
+
+  return false
 end
 
 return Player

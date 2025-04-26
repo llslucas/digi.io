@@ -1,6 +1,6 @@
 GAME = {}
 
-GAME.STATUS = "stopped"
+GAME.STATUS = "playing"
 GAME.SCORE = 0
 GAME.LEVEL = 0
 GAME.ENEMIES = 0

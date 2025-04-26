@@ -42,6 +42,10 @@ function Enemies:update(dt)
   end
 end
 
+function Enemies:getFirstEnemy()
+  return self.enemies[1]
+end
+
 function Enemies:checkInput(char)
   for _, enemy in ipairs(self.enemies) do
     if enemy:checkInput(char) then
