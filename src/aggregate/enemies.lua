@@ -34,13 +34,12 @@ function Enemies:update(dt)
   end
 
   self.explosions:update(dt)
-  
+
   if #self.enemies > 0 then
     self.tankSound:play()
   else
     self.tankSound:stop()
   end
-  
 end
 
 function Enemies:checkInput(char)

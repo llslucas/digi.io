@@ -11,9 +11,12 @@ local Enemies = require 'src.aggregate.enemies'
 local AmbienceSound = require 'src.sounds.ambience-sound'
 local ShotSound = require 'src.sounds.shot-sound'
 local Score = require 'src.entity.graphics.score'
+local Progression = require 'src.gameplay.progression'
 
 function Gameplay:new()
-  self.status = "playing"
+  GAME.STATUS = "playing"
+
+  self.progression = Progression()
 
   self.gameScreen = GameScreen()
   self.player = Player()
@@ -36,17 +39,21 @@ function Gameplay:draw()
 end
 
 function Gameplay:update(dt)
-  if self.player.isAlive and self.status == "playing" then
+  if self.player.isAlive and GAME.STATUS == "playing" then
     self.elapsedTime = self.elapsedTime + dt
 
     self.player:update(dt)
     self.enemies:update(dt)
     self.score:update(dt)
 
-    if self.elapsedTime >= 2 then
+    if self.elapsedTime >= GAME.SPAWN_RATE and GAME.ENEMIES > 0 then
       local randomWord = words[math.random(#words)]
-      self.enemies:addEnemy(50, randomWord.word, math.random(2, 3))
+      self.enemies:addEnemy(GAME.ENEMY_SPEED, randomWord.word, math.random(2, 3))
       self.elapsedTime = 0
+    end
+
+    if GAME.ENEMIES <= 0 then      
+      self.progression:increaseLevel()
     end
   else
     self:stopSounds()
@@ -59,7 +66,7 @@ function Gameplay:keypressed(key)
     return
   end
 
-  if self.status ~= "playing" then
+  if GAME.STATUS ~= "playing" then
     return
   end
 
@@ -79,19 +86,20 @@ function Gameplay:keypressed(key)
   if self.enemies:checkCompleted() then
     self.player:unsetEnemy()
     self.score:addScore(POINTS_PER_ENEMY)
+    GAME.ENEMIES = GAME.ENEMIES - 1
   end
 end
 
 function Gameplay:tooglePause()
-  if self.status == "playing" then
-    self.status = "paused"
+  if GAME.STATUS == "playing" then
+    GAME.STATUS = "paused"
   else
-    self.status = "playing"
+    GAME.STATUS = "playing"
   end
 end
 
 function Gameplay:restart()
-  self.status = "playing"
+  GAME.STATUS = "playing"
   self.elapsedTime = 0
 end
 

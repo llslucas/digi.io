@@ -1,11 +1,10 @@
 local Score = Object:extend()
 
-function Score:new(x, y)  
+function Score:new(x, y)
   self.x = x
   self.y = y
 
-  self.score = 0
-  self.text = self.score .. " pts"
+  self:setText()
 
   self.font = LG.newFont(20)
   self.width = self.font:getWidth(self.text)
@@ -31,7 +30,7 @@ function Score:draw()
 end
 
 function Score:update(dt)
-  self.text = self.score .. " pts"
+  self:setText()
 
   self.width = self.font:getWidth(self.text)
   self.height = self.font:getHeight(self.text)
@@ -41,19 +40,23 @@ function Score:update(dt)
 end
 
 function Score:getScore()
-  return self.score
+  return GAME.SCORE
 end
 
 function Score:setScore(score)
-  self.score = score
+  GAME.SCORE = score
 end
 
 function Score:addScore(points)
-  self.score = self.score + points
+  GAME.SCORE = GAME.SCORE + points
 end
 
 function Score:reset()
-  self.score = 0
+  GAME.SCORE = 0
+end
+
+function Score:setText()
+  self.text = "L" .. GAME.LEVEL .. " " .. GAME.SCORE .. " pts"
 end
 
 return Score
