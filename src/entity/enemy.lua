@@ -7,7 +7,7 @@ function Enemy:new(speed, word, type)
   Enemy.super.new(self, SPRITES_SCALING, type, math.rad(180))
 
   self:setCoordinates(
-    math.random(0, LG.getWidth() - self:getWidth()),
+    math.random(TANK_SPAWN_MARGIN, LG.getWidth() - self:getWidth() - TANK_SPAWN_MARGIN),
     0
   )
 
