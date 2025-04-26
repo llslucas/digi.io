@@ -4,12 +4,12 @@ local Tank = entity:extend()
 local Track = require "src.entity.parts.track"
 local TankCannon = require "src.entity.parts.tank-cannon"
 local TankBase = require "src.entity.parts.tank-base"
+local RotateSound = require "src.sounds.rotate-sound"
 
 function Tank:new(scale, type, angle)
   Tank.super.new(self)
-  
-  self.rotateSound = love.audio.newSource("assets/sounds/turret-rotate.wav", "static")
-  self.rotateSound:setVolume(0.5)
+
+  self.rotateSound = RotateSound()
 
   self.angle = angle or 0
   self.scale = scale or 0.5
@@ -42,20 +42,12 @@ end
 function Tank:turnCannon(angle)
   -- Verifica se o ângulo mudou o suficiente 
   if math.abs(self.angle - angle) > 1 then
-    if self.rotateSound:isPlaying() then
-      self.rotateSound:stop()
-    end
     self.rotateSound:play()
   end
 
   self.angle = angle
   self.cannon:turn(angle)
 end
-
-
---function Tank:turnCannon(angle)
---  self.cannon:turn(angle)
---end
 
 function Tank:setCoordinates(x, y)
   self.x = x

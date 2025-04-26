@@ -7,8 +7,8 @@ LG = love.graphics
 local gameScreen = require 'src.screens.game-screen'
 local Player = require 'src.entity.player'
 local Enemies = require 'src.aggregate.enemies'
-local Ambience = require 'src.sounds.ambience'
-local ShotSound = require 'src.sounds.shot'
+local Ambience = require 'src.sounds.ambience-sound'
+local ShotSound = require 'src.sounds.shot-sound'
 
 local player, enemies, ambience, shotSound
 local elapsedTime = 0
