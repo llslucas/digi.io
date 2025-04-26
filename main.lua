@@ -48,7 +48,7 @@ function love.update(dt)
 end
 
 function love.keypressed(key)
-  if key == 'escape' then
+  if key == 'escape' and GAME.STATUS == 'initial' then
     love.event.quit()
   end
   gameplay:keypressed(key)

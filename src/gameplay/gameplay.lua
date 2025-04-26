@@ -78,7 +78,7 @@ function Gameplay:update(dt)
 end
 
 function Gameplay:keypressed(key)
-  if key == 'return' then
+  if key == 'return' or key == 'escape' then
     self:tooglePause()
     return
   end
