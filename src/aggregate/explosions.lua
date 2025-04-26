@@ -2,17 +2,16 @@ local Object = require 'lib.classic'
 local Explosions = Object:extend()
 
 local Explosion = require 'src.animations.explosion'
+local ExplosionSound = require 'src.sounds.explosion-sound'
 
 function Explosions:new()
   self.explosions = {}
-  self.explosionSound = love.audio.newSource('assets/sounds/explosion3.flac', 'static')
-  self.explosionSound:setVolume(0.5)
+  self.explosionSound = ExplosionSound()
 end
 
 function Explosions:addExplosion(x, y, scale)
   local explosion = Explosion(x, y, scale)
   table.insert(self.explosions, explosion)
-  self.explosionSound:stop()
   self.explosionSound:play()
 end
 
