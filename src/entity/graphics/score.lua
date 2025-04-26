@@ -6,12 +6,15 @@ function Score:new(x, y)
 
   self:setText()
 
-  self.font = LG.newFont(20)
+  self.font = FONTS.Score
   self.width = self.font:getWidth(self.text)
   self.height = self.font:getHeight(self.text)
 
-  self.dx = x - self.width - 20
-  self.dy = y - self.height - 10
+  self.paddingX = 20
+  self.paddingY = 20
+
+  self.dx = self.x - self.width - self.paddingX
+  self.dy = self.y - self.height - self.paddingY
 end
 
 function Score:draw()
@@ -19,13 +22,11 @@ function Score:draw()
   LG.setFont(self.font)
 
   LG.setColor(0, 0, 0, 0.6)
-  LG.rectangle("fill", self.dx, self.dy, self.width + 20, self.height + 10, 5, 5, 10)
-
-  LG.setColor(1, 0.349, 0)
-
-  LG.print(self.text, self.dx + 10, self.dy + 5)
+  LG.rectangle("fill", self.dx, self.dy, self.width + self.paddingX, self.height + self.paddingY, self.height / 2, self.height / 2)
 
   LG.setColor(1, 1, 1)
+  LG.print(self.text, self.dx + self.paddingX / 2, self.dy + self.paddingY / 2)
+
   LG.setFont(defaultFont)
 end
 
@@ -35,8 +36,8 @@ function Score:update(dt)
   self.width = self.font:getWidth(self.text)
   self.height = self.font:getHeight(self.text)
 
-  self.dx = self.x - self.width - 20
-  self.dy = self.y - self.height - 10
+  self.dx = self.x - self.width - self.paddingX
+  self.dy = self.y - self.height - self.paddingY
 end
 
 function Score:getScore()

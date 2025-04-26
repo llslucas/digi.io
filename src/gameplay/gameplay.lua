@@ -8,14 +8,11 @@ local Gameplay = Object:extend()
 local GameScreen = require 'src.screens.game-screen'
 local Player = require 'src.entity.player'
 local Enemies = require 'src.aggregate.enemies'
-local AmbienceSound = require 'src.sounds.ambience-sound'
 local ShotSound = require 'src.sounds.shot-sound'
 local Score = require 'src.entity.graphics.score'
 local Progression = require 'src.gameplay.progression'
 
 function Gameplay:new()
-  GAME.STATUS = "playing"
-
   self.progression = Progression()
 
   self.gameScreen = GameScreen()
@@ -26,9 +23,6 @@ function Gameplay:new()
   self.score = Score(LG.getWidth() - 10, LG.getHeight() - 10)
 
   self.elapsedTime = 0
-
-  self.ambience = AmbienceSound()
-  self.ambience:play()
 end
 
 function Gameplay:draw()
@@ -46,7 +40,7 @@ function Gameplay:update(dt)
     self.enemies:update(dt)
     self.score:update(dt)
 
-    if self.elapsedTime >= GAME.SPAWN_RATE and GAME.ENEMIES > 0 then
+    if self.elapsedTime >= GAME.SPAWN_RATE then
       local randomWord = words[math.random(#words)]
       self.enemies:addEnemy(GAME.ENEMY_SPEED, randomWord.word, math.random(2, 3))
       self.elapsedTime = 0
@@ -110,16 +104,15 @@ end
 function Gameplay:gameOver()
   self.player:unsetEnemy()
   self.enemies:clear()
+  self:stopSounds()
   GAME.STATUS = "gameover"
 end
 
 function Gameplay:stopSounds()
-  self.ambience:stop()
   self.enemies.tankSound:stop()
 end
 
 function Gameplay:playSounds()
-  self.ambience:play()
   self.enemies.tankSound:play()
 end
 

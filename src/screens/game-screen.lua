@@ -1,40 +1,40 @@
 local GameScreen = Object:extend()
 
 function GameScreen:new()
-  GameScreen.bg = {}
-  GameScreen.bg.img = LG.newImage('assets/img/bg.jpg')
-  GameScreen.bg.img:setWrap("repeat", "repeat")
+  self.bg = {}
+  self.bg.img = LG.newImage('assets/img/bg.jpg')
+  self.bg.img:setWrap("repeat", "repeat")
 
-  GameScreen.bg.width = LG.getWidth()
-  GameScreen.bg.height = LG.getHeight()
-  GameScreen.bg.scale = GameScreen.bg.width / GameScreen.bg.img:getWidth()
+  self.bg.width = LG.getWidth()
+  self.bg.height = LG.getHeight()
+  self.bg.scale = self.bg.width / self.bg.img:getWidth()
 
-  GameScreen.bg.scroll = 0
-  GameScreen.bg.speed = 50
+  self.bg.scroll = 0
+  self.bg.speed = 50
 
-  GameScreen.bg.quad = LG.newQuad(
+  self.bg.quad = LG.newQuad(
     0, 0,
-    GameScreen.bg.img:getWidth(),
-    GameScreen.bg.img:getHeight(),
-    GameScreen.bg.img:getWidth(),
-    GameScreen.bg.img:getHeight()
+    self.bg.img:getWidth(),
+    self.bg.img:getHeight(),
+    self.bg.img:getWidth(),
+    self.bg.img:getHeight()
   )
 end
 
 function GameScreen:draw()
-  LG.draw(GameScreen.bg.img, GameScreen.bg.quad, 0, 0, 0, GameScreen.bg.scale, GameScreen.bg.scale)
+  LG.draw(self.bg.img, self.bg.quad, 0, 0, 0, self.bg.scale, self.bg.scale)
 end
 
 function GameScreen:update(dt)
-  GameScreen.bg.scroll = (GameScreen.bg.scroll - GameScreen.bg.speed * dt) % GameScreen.bg.img:getHeight()
+  self.bg.scroll = (self.bg.scroll - self.bg.speed * dt) % self.bg.img:getHeight()
 
-  GameScreen.bg.quad:setViewport(
+  self.bg.quad:setViewport(
     0,
-    GameScreen.bg.scroll,
-    GameScreen.bg.width,
-    GameScreen.bg.height,
-    GameScreen.bg.width,
-    GameScreen.bg.height
+    self.bg.scroll,
+    self.bg.width,
+    self.bg.height,
+    self.bg.width,
+    self.bg.height
   )
 end
 

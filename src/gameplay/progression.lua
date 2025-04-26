@@ -14,13 +14,6 @@ function Progression:increaseLevel()
   self:calcSpawnRate()
 end
 
-function Progression:reset()
-  GAME.LEVEL = 1
-  GAME.ENEMIES = 5
-  GAME.ENEMY_SPEED = INITIAL_SPEED
-  GAME.SPAWN_RATE = INITIAL_SPAWN_RATE
-end
-
 function Progression:calcEnemySpeed()
   GAME.ENEMY_SPEED = math.min(math.floor(INITIAL_SPEED + (GAME.LEVEL - 1) * SPEED_INCREMENT), SPEED_LIMIT)
 end

@@ -4,6 +4,7 @@ local Player = Tank:extend()
 local drawDashedLine = require "src.utils.draw-dashed-line"
 
 local Aim = require "src.entity.graphics.aim"
+local ExplosionSound = require "src.sounds.explosion-sound"
 
 function Player:new()
   Player.super.new(self, SPRITES_SCALING, 1)
@@ -68,6 +69,8 @@ function Player:checkCollision(tank)
   local tankY = tank.y
 
   if math.abs(playerY - tankY) < self:getHeight() then
+    local explosion = ExplosionSound()
+    explosion:play()
     return true
   end
 
