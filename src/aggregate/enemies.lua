@@ -79,7 +79,7 @@ end
 function Enemies:removeEnemy(index)
   local x, y = self.enemies[index]:getCenterCoordinates()
 
-  self.explosions:addExplosion(x, y, 0.5)
+  self.explosions:addExplosion(x, y, SPRITES_SCALING)
   table.remove(self.enemies, index)
 end
 

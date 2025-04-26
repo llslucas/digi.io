@@ -1,4 +1,3 @@
-local Object = require "lib.classic"
 local Entity = Object:extend()
 
 function Entity:new(img, scale, angle)

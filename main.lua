@@ -1,7 +1,11 @@
 -- Global
 LG = love.graphics
 
--- Dependências
+-- Dependências Globais
+require 'src.global.parameters'
+Object = require 'lib.classic'
+
+-- Dependências Locais
 local Gameplay = require 'src.gameplay.gameplay'
 
 -- Local 

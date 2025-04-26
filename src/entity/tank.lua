@@ -13,7 +13,7 @@ function Tank:new(scale, type, angle)
   self.rotateSound = RotateSound()
 
   self.angle = angle or 0
-  self.scale = scale or 0.5
+  self.scale = scale or SPRITES_SCALING
   self.type = type or 1
 
   self.cannon = TankCannon(scale, type, angle)

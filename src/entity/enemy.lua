@@ -4,7 +4,7 @@ local Enemy = Tank:extend()
 local Text = require("src.entity.graphics.text")
 
 function Enemy:new(speed, word, type)
-  Enemy.super.new(self, 0.5, type, math.rad(180))
+  Enemy.super.new(self, SPRITES_SCALING, type, math.rad(180))
 
   self:setCoordinates(
     math.random(0, LG.getWidth() - self:getWidth()),

@@ -1,4 +1,3 @@
-local Object = require "lib.classic"
 local GameScreen = Object:extend()
 
 function GameScreen:new()

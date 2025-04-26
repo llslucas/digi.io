@@ -2,7 +2,7 @@ local Sound = require 'src.sounds.sound'
 local RotateSound = Sound:extend()
 
 function RotateSound:new()
-  self.super.new(self, "assets/sounds/turret-rotate.wav", "static", 0.5, false)
+  self.super.new(self, "assets/sounds/turret-rotate.wav", "static", SFX_VOLUME, false)
 end
 
 function RotateSound:play()

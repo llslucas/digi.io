@@ -5,14 +5,14 @@ local drawDashedLine = require "src.utils.draw-dashed-line"
 local Aim = require "src.entity.graphics.aim"
 
 function Player:new()
-  Player.super.new(self, 0.5, 1)
+  Player.super.new(self, SPRITES_SCALING, 1)
 
   self:setCoordinates(
     LG.getWidth()/2 - self:getCenter(),
     LG.getHeight() - self:getHeight() - 20
   )
 
-  self.aim = Aim(0.5)
+  self.aim = Aim(SPRITES_SCALING)
   self.enemy = nil
 end
 

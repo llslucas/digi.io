@@ -78,7 +78,7 @@ function Gameplay:keypressed(key)
 
   if self.enemies:checkCompleted() then
     self.player:unsetEnemy()
-    self.score:addScore(10)
+    self.score:addScore(POINTS_PER_ENEMY)
   end
 end
 

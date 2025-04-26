@@ -1,4 +1,3 @@
-local Object = require "lib.classic"
 local Animation = Object:extend()
 
 function Animation:new(interval)

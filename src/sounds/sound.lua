@@ -1,4 +1,3 @@
-local Object = require 'lib.classic'
 local Sound = Object:extend()
 
 function Sound:new(soundPath, soundType, volume, looping)
