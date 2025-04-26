@@ -13,4 +13,16 @@ function Sound:play()
   end
 end
 
+function Sound:stop()
+  if self.sound:isPlaying() then
+    self.sound:stop()
+  end
+end
+
+function Sound:pause()
+  if self.sound:isPlaying() then
+    self.sound:pause()
+  end
+end
+
 return Sound

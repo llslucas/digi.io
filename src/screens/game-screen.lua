@@ -1,6 +1,7 @@
-local GameScreen = {}
+local Object = require "lib.classic"
+local GameScreen = Object:extend()
 
-function GameScreen.load()
+function GameScreen:new()
   GameScreen.bg = {}
   GameScreen.bg.img = LG.newImage('assets/img/bg.jpg')
   GameScreen.bg.img:setWrap("repeat", "repeat")
@@ -21,11 +22,11 @@ function GameScreen.load()
   )
 end
 
-function GameScreen.draw()
+function GameScreen:draw()
   LG.draw(GameScreen.bg.img, GameScreen.bg.quad, 0, 0, 0, GameScreen.bg.scale, GameScreen.bg.scale)
 end
 
-function GameScreen.update(dt)
+function GameScreen:update(dt)
   GameScreen.bg.scroll = (GameScreen.bg.scroll - GameScreen.bg.speed * dt) % GameScreen.bg.img:getHeight()
 
   GameScreen.bg.quad:setViewport(

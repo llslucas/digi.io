@@ -9,6 +9,7 @@ local RotateSound = require "src.sounds.rotate-sound"
 function Tank:new(scale, type, angle)
   Tank.super.new(self)
 
+  self.isAlive = true
   self.rotateSound = RotateSound()
 
   self.angle = angle or 0
