@@ -12,7 +12,8 @@ local gameplay
 
 function love.load()
   math.randomseed(os.time())
-  LG.setFont(LG.newFont(14))
+  local customFont = LG.newFont('assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf', 10)
+  LG.setFont(customFont)
 
   gameplay = Gameplay()
 end

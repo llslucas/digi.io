@@ -56,7 +56,7 @@ function Score:reset()
 end
 
 function Score:setText()
-  self.text = "L" .. GAME.LEVEL .. " " .. GAME.SCORE .. " pts"
+  self.text = "L" .. GAME.LEVEL .. " - " .. GAME.SCORE .. " pts"
 end
 
 return Score
