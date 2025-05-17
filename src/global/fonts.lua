@@ -1,6 +1,6 @@
 FONTS = {}
-FONTS.normal = LG.newFont('assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf', 10)
-FONTS.Title = LG.newFont('assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf', 16)
-FONTS.Score = LG.newFont('assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf', 12)
-FONTS.BigScore = LG.newFont('assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf', 22)
-FONTS.Big = LG.newFont('assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf', 48)
+FONTS.normal = LG.newFont('assets/fonts/press_start_2p/press_start_2p_regular.ttf', 10)
+FONTS.Title = LG.newFont('assets/fonts/press_start_2p/press_start_2p_regular.ttf', 16)
+FONTS.Score = LG.newFont('assets/fonts/press_start_2p/press_start_2p_regular.ttf', 12)
+FONTS.BigScore = LG.newFont('assets/fonts/press_start_2p/press_start_2p_regular.ttf', 22)
+FONTS.Big = LG.newFont('assets/fonts/press_start_2p/press_start_2p_regular.ttf', 48)
