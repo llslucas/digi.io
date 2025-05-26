@@ -2,7 +2,7 @@ local GameScreen = Object:extend()
 
 function GameScreen:new()
   self.bg = {}
-  self.bg.img = LG.newImage('assets/img/bg.jpg')
+  self.bg.img = LG.newImage('assets/img/bg-game.jpg')
   self.bg.img:setWrap("repeat", "repeat")
 
   self.bg.width = LG.getWidth()
